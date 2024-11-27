@@ -1,0 +1,22 @@
+services:
+  frontend:
+    build:
+      context: ./tmsfrontend
+      dockerfile: ./frontend.dockerfile
+    container_name: tmsfrontend
+    ports:
+      - "2000:2000"
+    volumes:
+      - ./tmsfrontend:/frontend
+      - tms_node_modules:/frontend/node_modules
+    networks:
+      - app-network
+
+
+
+volumes:
+  tms_node_modules:
+
+networks:
+  app-network:
+    driver: bridge
