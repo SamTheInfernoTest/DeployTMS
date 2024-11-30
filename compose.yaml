@@ -14,8 +14,37 @@ services:
 
 
 
+  backend:
+    build:
+      context: ./tmsbackend
+      dockerfile: ./backend.dockerfile
+    container_name: tmsbackend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./tmsbackend:/backend
+    networks:
+      - app-network
+
+
+  db:
+    image: postgres:17-alpine
+    container_name: tmsdb
+    environment:
+      POSTGRES_USER: saurabh
+      POSTGRES_PASSWORD: suman123#2007
+      POSTGRES_DB: mydatabase
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+
+
+
 volumes:
   tms_node_modules:
+  postgres_data:
 
 networks:
   app-network:
