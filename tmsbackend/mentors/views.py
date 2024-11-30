@@ -32,3 +32,16 @@ def login(request):
         return Response({'message':"User does not exist"},status=status.HTTP_404_NOT_FOUND)
             
 
+@api_view(['GET'])
+def getMentors(request, grade):
+    mentors = Mentor.objects.filter(standards__std=grade)
+
+    allMentor = []
+    for m in mentors:
+        allMentor.append({
+            'id': m.id,
+            'name': m.name,
+            'profileImage': m.profile_image.url if m.profile_image else None
+        })
+
+    return Response(allMentor, status=status.HTTP_200_OK)

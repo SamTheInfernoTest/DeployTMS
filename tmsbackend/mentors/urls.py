@@ -6,4 +6,5 @@ from . import views
 urlpatterns = [
     path('login/', views.login , name='loginMentor'),
     path('refresh/',TokenRefreshView.as_view(), name='token_refresh'),
+    path('getMentors/<str:grade>', views.getMentors , name='getMentors'),
 ]
