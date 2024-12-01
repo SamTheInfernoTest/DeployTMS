@@ -9,6 +9,9 @@ class Student(models.Model):
     last_active = models.DateTimeField(auto_now=True)
     profile_image = models.FileField(upload_to='students/profileImages', null=True, blank=True)
 
+    background_image = models.FileField(upload_to='students/backgroundImages', null=True, blank=True)
+    moto = models.CharField(max_length=500, null=True, blank=True)
+
     standards = models.ManyToManyField(Standard, related_name="students")
 
     def __str__(self):

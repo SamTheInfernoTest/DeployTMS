@@ -34,7 +34,7 @@ export function UserContextProvider({ children }) {
         }
     }, [])
 
-    function loginTheUser(userType , uid, name, profileImage, standards, refreshToken, token){
+    function loginTheUser(userType , uid, name, profileImage, standards, refreshToken, token, bgImage, moto){
         setUserType(userType)
         setUid(uid)
         setName(name)
@@ -42,22 +42,18 @@ export function UserContextProvider({ children }) {
         setStandards(standards)
         setToken(token)
         setRefreshToken(refreshToken)
-
+        
         sessionStorage.setItem('userType', userType)
         sessionStorage.setItem('uid', uid)
         sessionStorage.setItem('name', name)
         if (profileImage) sessionStorage.setItem('profileImage', profileImage)
         sessionStorage.setItem('standards', JSON.stringify(standards))
         sessionStorage.setItem('refreshToken', refreshToken)
+        if (bgImage) sessionStorage.setItem('bgImage', bgImage)
+        if (moto) sessionStorage.setItem('moto', moto)
     }
 
     function logoutTheUser(){
-        sessionStorage.removeItem('userType')
-        sessionStorage.removeItem('uid')
-        sessionStorage.removeItem('name')
-        sessionStorage.removeItem('profileImage')
-        sessionStorage.removeItem('standards')
-        sessionStorage.removeItem('refreshToken')
 
         setUserType(null)
         setUid(null)

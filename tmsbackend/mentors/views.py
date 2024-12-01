@@ -24,7 +24,9 @@ def login(request):
                 'access': str(refresh.access_token),
                 'name': name,
                 'profileImage': profileImage,
-                'standards': standards
+                'standards': standards,
+                'bgImage' : user.background_image.url if user.background_image else None,
+                'moto' : user.moto
             },status=status.HTTP_200_OK)
         else:
             return Response({'message':"Wrong Password"},status=status.HTTP_401_UNAUTHORIZED)
