@@ -9,4 +9,6 @@ urlpatterns = [
     path('assignTask/',views.assignTask , name='assignTask'),
     path('getAssignedTasks/<str:uid>/<str:startDate>/<str:endDate>/',views.mentorGetTasks , name='mentorGetTasks'),
     path('mentorGetSubmissions/<str:taskId>/',views.mentorGetSubmissions , name='mentorGetSubmissions'),
+    path('studentGetTaskInfo/<str:uid>/',views.studentGetTaskInfo , name='studentGetTaskInfo'),
+    path('mentorGetTaskInfo/<str:uid>/',views.mentorGetTaskInfo , name='mentorGetTaskInfo'),
 ]

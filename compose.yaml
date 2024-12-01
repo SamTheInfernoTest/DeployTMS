@@ -25,6 +25,9 @@ services:
       - ./tmsbackend:/backend
     networks:
       - app-network
+    environment:
+      - PYTHONUNBUFFERED=1
+
 
 
   db:

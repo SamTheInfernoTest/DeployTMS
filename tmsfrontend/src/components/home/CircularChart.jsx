@@ -9,13 +9,16 @@ const CircularChart = ({ a, b }) => {
     useEffect(() => {
         let progressTimeout;
         let countTimeout;
-
+        const progress = b == 0 ? 0 : (a/b) 
+        
+        
         // Increment progress to actual value
         const incrementProgress = () => {
             setProgress((prev) => {
-                if (prev >= (a / b) * 100) {
+                
+                if (prev >= (progress) * 100) {
                     clearTimeout(progressTimeout);
-                    return (a / b) * 100;
+                    return (progress) * 100;
                 }
                 progressTimeout = setTimeout(incrementProgress, 10);
                 return prev + 1;

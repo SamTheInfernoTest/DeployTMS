@@ -156,3 +156,19 @@ def mentorGetSubmissions(request, taskId):
         d['submission_file'] ='/media/' + d['submission_file']
 
     return Response( data, status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+def studentGetTaskInfo(request, uid):
+    student = Student.objects.get(uid=uid)
+    assignedTasks = Task.objects.filter(assignees__in=student.standards.all()).count()
+    submittedTasks = TaskSubmission.objects.filter(student=student).count()
+
+    return Response({'assignedTasks': assignedTasks, 'submittedTasks': submittedTasks}, status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def mentorGetTaskInfo(request, uid):
+    mentor = Mentor.objects.get(uid=uid)
+    totalTasks = Task.objects.filter(assignor=mentor).count()
+
+    return Response({'totalTasks': totalTasks}, status=status.HTTP_200_OK)
