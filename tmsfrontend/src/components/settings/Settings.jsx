@@ -1,6 +1,9 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 
+
+import Account from './Account'
+
 function Settings() {
 
   const [tab, setTab] = useState('account')
@@ -37,6 +40,9 @@ function Settings() {
           </nav>
           <hr className='dark:brightness-[25%] brightness-[90%]'/>
         </header>
+        <div className = 'px-14'>
+          {tab === 'account' && <Account />}
+        </div>
       </div>
     </div>
   )

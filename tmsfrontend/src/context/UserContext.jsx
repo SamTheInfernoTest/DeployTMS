@@ -37,7 +37,7 @@ export function UserContextProvider({ children }) {
     function loginTheUser(userType , uid, name, profileImage, standards, refreshToken, token, bgImage, moto){
         setUserType(userType)
         setUid(uid)
-        setName(name)
+        setName(name)        
         if (profileImage) setProfileImage(profileImage);
         setStandards(standards)
         setToken(token)
@@ -200,7 +200,7 @@ export function UserContextProvider({ children }) {
     }
 
     return (
-        <userContext.Provider value={{ uid, name, profileImage, standards, userType, loginTheUser, logoutTheUser, rememberMe, setRememberMe, axiosSecure, timeLimit, setTimeLimit, isoToLocal }}>
+        <userContext.Provider value={{ uid, name, profileImage, setProfileImage, standards, userType, loginTheUser, logoutTheUser, rememberMe, setRememberMe, axiosSecure, timeLimit, setTimeLimit, isoToLocal }}>
             {children}
         </userContext.Provider>
     )
