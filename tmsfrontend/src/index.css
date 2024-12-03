@@ -2,17 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
-.no-scrollbar::-webkit-scrollbar {
-    display: none;
+@layer utilities {
+  /* Global Scrollbar Styling */
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-black/70 rounded-lg transition-colors;
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-black/90;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  /* Dark Mode Scrollbar Styling */
+  .dark ::-webkit-scrollbar-thumb {
+    @apply bg-white/50;
+  }
+
+  .dark ::-webkit-scrollbar-thumb:hover {
+    @apply bg-white/70;
+  }
 }
 
+
+/* .no-scrollbar::-webkit-scrollbar {
+    display: none;
+} */
+
 /* Hide scrollbar for IE, Edge and Firefox */
-.no-scrollbar {
-    -ms-overflow-style: none;
+/* .no-scrollbar {
+    -ms-overflow-style: none; */
     /* IE and Edge */
-    scrollbar-width: none;
+    /* scrollbar-width: none; */
     /* Firefox */
-}
+/* } */
+
 
 /* Light Theme */
 .light-theme .ql-toolbar .ql-stroke {
@@ -121,30 +153,3 @@
     height: 92px;
 } */
 
-
-/* Global Scrollbar Styling */
-* {
-  scrollbar-width: none; /* For Firefox */
-  scrollbar-color: #888 #f0f0f0; /* Thumb and track colors */
-}
-
-/* For WebKit-based browsers (Chrome, Edge, Safari) */
-*::-webkit-scrollbar {
-  width: 8px; /* Width of the scrollbar */
-  height: 8px; /* Height of the scrollbar for horizontal scroll */
-}
-
-*::-webkit-scrollbar-track {
-  background: #f0f0f0; /* Track background */
-  border-radius: 10px; /* Rounded corners for track */
-}
-
-*::-webkit-scrollbar-thumb {
-  background: #888; /* Thumb color */
-  border-radius: 10px; /* Rounded corners for thumb */
-  border: 2px solid #f0f0f0; /* Adds padding around thumb for a thinner look */
-}
-
-*::-webkit-scrollbar-thumb:hover {
-  background: #555; /* Darker thumb on hover */
-}

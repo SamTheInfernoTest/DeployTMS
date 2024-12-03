@@ -12,6 +12,8 @@ export function UserContextProvider({ children }) {
     const [name, setName] = useState('')
     const [standards, setStandards] = useState([])
     const [profileImage, setProfileImage] = useState(null)
+    const [bgImage, setBgImage] = useState(null)
+    const [moto, setMoto] = useState(null)
     const [rememberMe, setRememberMe] = useState(true)
 
     const [token, setToken] = useState(null)
@@ -28,6 +30,8 @@ export function UserContextProvider({ children }) {
             setRefreshToken(sessionStorage.getItem('refreshToken'))
             setName(sessionStorage.getItem('name'))
             setProfileImage(sessionStorage.getItem('profileImage'))  
+            setBgImage(sessionStorage.getItem('bgImage'))
+            setMoto(sessionStorage.getItem('moto'))
                 
                 
             setStandards(JSON.parse(sessionStorage.getItem('standards') || '[]'))
@@ -38,18 +42,20 @@ export function UserContextProvider({ children }) {
         setUserType(userType)
         setUid(uid)
         setName(name)        
-        if (profileImage) setProfileImage(profileImage);
+        setProfileImage(profileImage ? `${baseApiUrl}${profileImage}` : '/user.svg')
         setStandards(standards)
         setToken(token)
         setRefreshToken(refreshToken)
+        setBgImage(bgImage ? `${baseApiUrl}${bgImage}` : "https://picsum.photos/1200/400")
+        setMoto(moto)
         
         sessionStorage.setItem('userType', userType)
         sessionStorage.setItem('uid', uid)
         sessionStorage.setItem('name', name)
-        if (profileImage) sessionStorage.setItem('profileImage', profileImage)
+        sessionStorage.setItem('profileImage', profileImage ? `${baseApiUrl}${profileImage}` : '/user.svg')
         sessionStorage.setItem('standards', JSON.stringify(standards))
         sessionStorage.setItem('refreshToken', refreshToken)
-        if (bgImage) sessionStorage.setItem('bgImage', bgImage)
+        sessionStorage.setItem('bgImage', bgImage ? `${baseApiUrl}${bgImage}` : "https://picsum.photos/1200/400")
         if (moto) sessionStorage.setItem('moto', moto)
     }
 
@@ -200,7 +206,7 @@ export function UserContextProvider({ children }) {
     }
 
     return (
-        <userContext.Provider value={{ uid, name, profileImage, setProfileImage, standards, userType, loginTheUser, logoutTheUser, rememberMe, setRememberMe, axiosSecure, timeLimit, setTimeLimit, isoToLocal }}>
+        <userContext.Provider value={{ uid, name, profileImage, setProfileImage, standards, userType, loginTheUser, logoutTheUser, rememberMe, setRememberMe, axiosSecure, timeLimit, setTimeLimit, isoToLocal, bgImage, setBgImage, moto, setMoto }}>
             {children}
         </userContext.Provider>
     )

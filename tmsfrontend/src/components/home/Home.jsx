@@ -6,7 +6,7 @@ import CircularChart from './CircularChart'
 
 function Home() {
 
-  const { axiosSecure, standards, userType, uid } = useUser()
+  const { axiosSecure, standards, userType, uid, bgImage, profileImage, moto } = useUser()
   const [assignedTasks, setAssignedTasks] = useState(0);
   const [submittedTasks, setSubmittedTasks] = useState(0);
 
@@ -24,24 +24,24 @@ function Home() {
       }).catch(err => console.log(err))
     }
   }, [])
-  const bgImage = sessionStorage.getItem('bgImage')
-  const moto = sessionStorage.getItem('moto')
+
+
 
   return (
     <div className='w-full h-full'>
       <div className=''>
         <div className='w-full h-[34vh] overflow-hidden object-cover relative rounded-md '>
-          <img src={bgImage ? `${baseApiUrl}${bgImage}` : "https://picsum.photos/1200/400"} alt=""
+          <img src={bgImage} alt=""
             className='w-full h-full object-cover'
           />
           <h2
-            className='absolute bottom-0 text-xl font-semibold  sm:text-right text-center bg-black/25 text-white p-2 max-h-fit sm:ml-32 rounded-lg text-pretty'
+            className='absolute bottom-0 right-0 text-xl font-semibold  sm:text-right text-center bg-black/25 text-white p-2 max-h-fit sm:ml-32 rounded-lg text-pretty'
           >{moto}</h2>
         </div>
         <div className='w-full p-3 sm:flex justify-between hidden gap-28 h-20  bg-lightPanel dark:bg-darkPanel relative rounded-lg'>
           <img
-            className='w-28 h-36 overflow-hidden rounded-lg -translate-y-24 '
-            src="https://picsum.photos/200/301" alt="" />
+            className='w-28 h-36 overflow-hidden rounded-lg -translate-y-24 object-cover'
+            src={profileImage} alt="" />
           <div className=''>
 
             <h3 className='p-5 font-semibold'>

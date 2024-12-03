@@ -15,7 +15,7 @@ function Settings() {
   return (
     <div>
       <div>
-        <header className = 'p-8 '>
+        <header className = 'sm:p-8 '>
           <nav>
             <ul className= 'flex flex-row '>
               <li id='account' className = ''>
@@ -40,7 +40,7 @@ function Settings() {
           </nav>
           <hr className='dark:brightness-[25%] brightness-[90%]'/>
         </header>
-        <div className = 'px-14'>
+        <div className = 'sm:px-14'>
           {tab === 'account' && <Account />}
         </div>
       </div>

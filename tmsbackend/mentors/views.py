@@ -47,3 +47,46 @@ def getMentors(request, grade):
         })
 
     return Response(allMentor, status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+def updatePassword(request):
+    data = request.data
+    uid = data['uid']
+    password = data['password']
+    
+    mentor = Mentor.objects.get(uid = uid)
+    mentor.password = password
+    mentor.save()
+    return Response({'message': 'Password updated successfully'}, status=status.HTTP_200_OK)
+            
+
+@api_view(['POST'])
+def updateProfileImage(request):
+    data = request.data
+    uid = data['uid']
+    image = request.FILES.get('image')
+    mentor = Mentor.objects.get(uid = uid)    
+    mentor.profile_image = image
+    mentor.save()
+    return Response({'message': 'Profile image updated successfully'}, status=status.HTTP_200_OK)
+
+
+@api_view(['POST'])
+def updateBgImage(request):
+    data = request.data
+    uid = data['uid']
+    image = request.FILES.get('image')
+    mentor = Mentor.objects.get(uid = uid)    
+    mentor.background_image = image
+    mentor.save()
+    return Response({'message': 'Background image updated successfully'}, status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+def updateMoto(request):
+    data = request.data
+    uid = data['uid']
+    moto = data['moto']
+    mentor = Mentor.objects.get(uid = uid)    
+    mentor.moto = moto
+    mentor.save()
+    return Response({'message': 'Moto updated successfully'}, status=status.HTTP_200_OK)

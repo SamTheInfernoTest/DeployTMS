@@ -74,7 +74,7 @@ function Menu({ setShowMenu }) {
                                 Submissions
                             </NavLink>
                         </li>}
-                    <li className="w-full"
+                    {/* <li className="w-full"
                         onClick={() => setShowMenu(false)}
                     >
                         <NavLink
@@ -83,7 +83,7 @@ function Menu({ setShowMenu }) {
                         >
                             Chat
                         </NavLink>
-                    </li>
+                    </li> */}
                     <li className="w-full"
                         onClick={() => setShowMenu(false)}
                     >
