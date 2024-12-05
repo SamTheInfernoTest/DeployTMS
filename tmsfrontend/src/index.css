@@ -6,7 +6,7 @@
   /* Global Scrollbar Styling */
   ::-webkit-scrollbar {
     width: 4px;
-    height: 8px;
+    height: 4px;
   }
 
   ::-webkit-scrollbar-thumb {
