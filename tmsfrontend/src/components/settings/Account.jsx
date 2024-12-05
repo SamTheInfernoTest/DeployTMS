@@ -128,7 +128,7 @@ function Account() {
                 >Change Your Moto</h2>
                 <div>
                     <textarea
-                        className='p-1 rounded-md dark:bg-[#1e293b] dark:text-darkText'
+                        className='p-1 rounded-md dark:bg-[#1e293b] dark:text-darkText w-1/2'
                     placeholder='Your Moto'
                     rows={3}
                     value = {moto || ''}
