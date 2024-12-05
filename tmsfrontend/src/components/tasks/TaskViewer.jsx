@@ -132,7 +132,7 @@ function TaskViewer({ info, setTaskViewer, submittedTask }) {
                         className='sm:h-full sm:w-7/12 w-full p-3 relative sm:overflow-y-auto'
                     >
                         <div className='sm:h-2/6 h-full'>
-                            <img src={info?.task_image ? `${baseApiUrl}${info?.task_image}` : 'https://picsum.photos/600/200'} alt={info?.title}
+                            <img src={info?.task_image ? `${baseApiUrl}${info?.task_image}` : `https://picsum.photos/seed/${info?.id}/600/200`} alt={info?.title}
                                 className="object-cover h-full w-full rounded-lg"
                             />
                         </div>
