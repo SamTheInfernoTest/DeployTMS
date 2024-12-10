@@ -12,7 +12,7 @@ function TaskPanel({setTaskViewer, setTaskInfo, info}) {
     <div id={info?.id} className="relative flex flex-col shadow-md bg-clip-border rounded-xl w-80 h-[23rem] bg-lightPanel dark:bg-darkPanel">
       <div className="relative mx-4 mt-4 overflow-hidden bg-clip-border rounded-xl h-44">
         <img
-          src={info?.task_image ? `${baseApiUrl}${info?.task_image}` : 'https://picsum.photos/200'}
+          src={info?.task_image ? `${baseApiUrl}${info?.task_image}` : `https://picsum.photos/seed/${info?.id}/200`}
           alt="card-image" className="object-cover w-full h-full" />
       </div>
       <div className="p-2">

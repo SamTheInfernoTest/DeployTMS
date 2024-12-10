@@ -83,7 +83,7 @@ function App() {
             onClick={() => logoutTheUser()}
             >Logout</button>
             <img src={profileImage } alt="Profile Image"
-              className="w-16 h-16 rounded-full ring dark:ring-slate-500 ring-slate-400 lg:scale-100 scale-75" />
+              className="w-16 h-16 rounded-full ring dark:ring-slate-500 ring-slate-400 lg:scale-100 scale-75 object-cover" />
           </div>
         </header>
 
