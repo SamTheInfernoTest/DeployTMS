@@ -8,8 +8,8 @@ import useWeb from '../../context/WebContext';
 
 function TaskViewer({ info, setTaskViewer, submittedTask }) {
     // console.log(submittedTask[info?.id]['submission_file']);
-    
-    const {baseApiUrl} = useWeb()
+
+    const { baseApiUrl } = useWeb()
     const { isoToLocal, uid, axiosSecure } = useUser();
     const [submitted, setSubmitted] = useState(false);
 
@@ -37,9 +37,9 @@ function TaskViewer({ info, setTaskViewer, submittedTask }) {
         }
     };
 
-    async function downloadFile(e){
+    async function downloadFile(e) {
         const theFile = info?.task_file
-        if (theFile){
+        if (theFile) {
             const fullUrl = `${baseApiUrl}${theFile}`;
             const filename = theFile.split('/').pop()
             const response = await axios.get(fullUrl, {
@@ -63,7 +63,7 @@ function TaskViewer({ info, setTaskViewer, submittedTask }) {
             // Revoke the object URL to free up memory
             URL.revokeObjectURL(blobUrl);
         }
-        
+
     }
 
     const isValidFile = (file) => {
@@ -132,7 +132,7 @@ function TaskViewer({ info, setTaskViewer, submittedTask }) {
                         className='sm:h-full sm:w-7/12 w-full p-3 relative sm:overflow-y-auto'
                     >
                         <div className='sm:h-2/6 h-full'>
-                            <img src={info?.task_image ? `${baseApiUrl}${info?.task_image}` : 'https://picsum.photos/600/200'} alt={info?.title}
+                            <img src={info?.task_image ? `${baseApiUrl}${info?.task_image}` : `https://picsum.photos/seed/${info?.id}/600/200`} alt={info?.title}
                                 className="object-cover h-full w-full rounded-lg"
                             />
                         </div>
@@ -143,8 +143,8 @@ function TaskViewer({ info, setTaskViewer, submittedTask }) {
                                 <h2 className=' text-md'>{`Assigned by ${info?.assignor}`}</h2>
                             </div>
                             <div className='h-full mt-1 '>
-                                
-                                <ReactQuill value={info?.description} modules={{ toolbar: false }} readOnly/>
+
+                                <ReactQuill value={info?.description} modules={{ toolbar: false }} readOnly />
 
                             </div>
                         </div>
@@ -156,7 +156,7 @@ function TaskViewer({ info, setTaskViewer, submittedTask }) {
                             <div className='font-semibold gap-2 flex flex-col'>
                                 <h3 className='flex justify-between'>Assigned on: <span>{`${isoToLocal(info?.created_date)}`}</span></h3>
                                 <h3 className='flex justify-between'>Deadline: <span>{`${isoToLocal(info?.due_date)}`}</span></h3>
-                                
+
                                 {submitted && <h3 className='flex justify-between bg-green-600 p-1 rounded-xl'>Submitted on: <span>{`${isoToLocal(submittedTask[info?.id]['submitted_date'])}`}</span></h3>}
                             </div>
 
@@ -164,7 +164,7 @@ function TaskViewer({ info, setTaskViewer, submittedTask }) {
                             <div className='w-full sm:h-full flex flex-col relative '>
                                 {submitted ?
                                     // <div className='w-full lg:h-5/6 md:h-5/6 h-96 mt-4'>
-                                        
+
                                     // </div>
                                     null
                                     :
@@ -195,8 +195,8 @@ function TaskViewer({ info, setTaskViewer, submittedTask }) {
                                         </div>
                                         <div className='flex justify-center mt-10'>
                                             {info?.task_file && <button
-                                            className='justify-self-center font-semibold hover:font-bold text-xl px-2 py-1 bg-blue-500 text-white rounded-xl hover:bg-blue-600 mx-auto'
-                                            onClick={(e) =>downloadFile(e)}
+                                                className='justify-self-center font-semibold hover:font-bold text-xl px-2 py-1 bg-blue-500 text-white rounded-xl hover:bg-blue-600 mx-auto'
+                                                onClick={(e) => downloadFile(e)}
                                             ><svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" className='inline-block'>
 
                                                     <g id="SVGRepo_bgCarrier" stroke-width="0" />
@@ -208,14 +208,14 @@ function TaskViewer({ info, setTaskViewer, submittedTask }) {
                                                 </svg> File by Mentor</button>}
 
                                         </div>
-                                        <div className='flex justify-center  w-full sm:mb-0 mb-10 sm:mt-0'>
+                                        <div className='flex justify-center  w-full sm:mb-0 mb-10 sm:mt-0 mt-5'>
 
-                                        <button
-                                            className='font-semibold hover:font-bold text-xl px-2 py-1 bg-blue-500 text-white rounded-xl hover:bg-blue-600 mx-auto'
-                                            onClick={handleSubmit}
-                                        >
-                                            Submit
-                                        </button>
+                                            <button
+                                                className='font-semibold hover:font-bold text-xl px-2 py-1 bg-blue-500 text-white rounded-xl hover:bg-blue-600 mx-auto'
+                                                onClick={handleSubmit}
+                                            >
+                                                Submit
+                                            </button>
                                         </div>
                                     </div>
                                 }

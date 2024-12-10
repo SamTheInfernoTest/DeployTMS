@@ -37,13 +37,14 @@ function Tasks() {
       .then(allTasks => {
         // Flatten the array of arrays and set it as the tasks
         setTasks(allTasks.flat());
+
       })
       .catch(err => {
         console.log(err);
       });
 
 
-      
+
 
   }, [taskViewer])
 
@@ -58,7 +59,7 @@ function Tasks() {
       .then(allTasks => {
         // Flatten the array of arrays and set it as the tasks
         const allSubmittedTasks = allTasks.flat();
-        
+
 
         setSubmittedTask(allSubmittedTasks.reduce((acc, { task_id, ...rest }) => {
           acc[task_id] = rest;
@@ -74,11 +75,11 @@ function Tasks() {
 
   useEffect(() => {
     setTimeLimitTasks(
-      tasks.filter(task => new Date(task.due_date) - new Date() < timeLimit  && !submittedTask[task.id])
+      tasks.filter(task => new Date(task.due_date) - new Date('2024-12-12') < timeLimit && !submittedTask[task.id])
     )
 
     setOtherTasks(
-      tasks.filter(task => new Date(task.due_date) - new Date() > timeLimit && !submittedTask[task.id])
+      tasks.filter(task => new Date(task.due_date) - new Date('2024-12-12') > timeLimit && !submittedTask[task.id])
     )
 
     setTasksDone(
@@ -122,18 +123,18 @@ function Tasks() {
 
   return (
     <div>
-      <ToastContainer containerId='task' position='top-right' theme={theme}/>
+      <ToastContainer containerId='task' position='top-right' theme={theme} />
 
-      {taskViewer ? <TaskViewer info={taskInfo} setTaskViewer={setTaskViewer} submittedTask = {submittedTask} /> : null}
+      {taskViewer ? <TaskViewer info={taskInfo} setTaskViewer={setTaskViewer} submittedTask={submittedTask} /> : null}
 
 
       {timeLimitTasks.length > 0 &&
         (<div className='sm:p-4'>
           <div className='flex justify-between'>
             <h1
-              className='text-3xl font-bold py-4'
+              className='sm:text-3xl text-2xl font-bold py-4'
             >Time Limit</h1>
-          <div className='my-auto'>
+            <div className='my-auto'>
               <button
                 onClick={() => { timeLimitRef.current.scrollBy({ left: -timeLimitRef.current.offsetWidth * 0.7, behavior: 'smooth' }); }}
                 className='p-2'
@@ -144,7 +145,7 @@ function Tasks() {
               ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path fill={theme === 'dark' ? '#DFF2EB' : '#000000'} d="M7.293 4.707 14.586 12l-7.293 7.293 1.414 1.414L17.414 12 8.707 3.293 7.293 4.707z" /></svg></button>
             </div>
           </div>
-        <div className='grid grid-flow-col grid-rows-1  overflow-x-auto no-scrollbar  overflow-y-hidden' ref={timeLimitRef}
+          <div className='grid grid-flow-col grid-rows-1  overflow-x-auto no-scrollbar  overflow-y-hidden' ref={timeLimitRef}
             onMouseDown={e => {
               e.preventDefault();
               window.addEventListener('mousemove', handleScrollTimeLimit);
@@ -155,9 +156,9 @@ function Tasks() {
 
 
           >
-            {timeLimitTasks.map((task) => { 
-                       
-              return <div className='mr-5' key={task.id}><TaskPanel info = {task} setTaskViewer={setTaskViewer} setTaskInfo={setTaskInfo} /></div>
+            {timeLimitTasks.map((task) => {
+
+              return <div className='mr-5' key={task.id}><TaskPanel info={task} setTaskViewer={setTaskViewer} setTaskInfo={setTaskInfo} /></div>
             })}
             {/* <div className='mr-5'><TaskPanel /></div> */}
 
@@ -171,7 +172,7 @@ function Tasks() {
       <div className='sm:p-4'>
         <div className='flex justify-between'>
           <h1
-            className='text-3xl font-bold py-4'
+            className='sm:text-3xl text-2xl font-bold py-4'
           >New Task</h1>
           <div className='my-auto'>
             <button
@@ -196,19 +197,19 @@ function Tasks() {
 
         >
           {
-          otherTasks.length > 0 ? 
-          (
-            <>
-              {otherTasks.map((task) => {
-                return <div className='mr-5' key={task.id}><TaskPanel info={task} setTaskViewer={setTaskViewer} setTaskInfo={setTaskInfo} /></div>
-              })}
-              <div className='rotate-90 h-[4rem] text-center my-auto text-2xl font-semibold'>END</div>
-            </>
-          )
-          
-          : <div className='font-semibold text-2xl text-center my-auto'>No New Task</div>
+            otherTasks.length > 0 ?
+              (
+                <>
+                  {otherTasks.map((task) => {
+                    return <div className='mr-5' key={task.id}><TaskPanel info={task} setTaskViewer={setTaskViewer} setTaskInfo={setTaskInfo} /></div>
+                  })}
+                  <div className='rotate-90 h-[4rem] text-center my-auto text-2xl font-semibold'>END</div>
+                </>
+              )
+
+              : <div className='font-semibold text-2xl text-center my-auto'>No New Task</div>
           }
-                    
+
         </div>
       </div>
 
@@ -218,20 +219,20 @@ function Tasks() {
         (<div className='sm:p-4'>
           <div className='flex justify-between'>
             <h1
-              className='text-3xl font-bold py-4'
+              className='sm:text-3xl text-2xl font-bold py-4'
             >Completed Tasks</h1>
             <div className='my-auto'>
               <button
-              onClick={() => { tasksDoneRef.current.scrollBy({ left: -tasksDoneRef.current.offsetWidth * 0.7, behavior: 'smooth' }); }}
+                onClick={() => { tasksDoneRef.current.scrollBy({ left: -tasksDoneRef.current.offsetWidth * 0.7, behavior: 'smooth' }); }}
                 className='p-2'
               ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path fill={theme === 'dark' ? '#DFF2EB' : '#000000'} d="M15.293 3.293 6.586 12l8.707 8.707 1.414-1.414L9.414 12l7.293-7.293-1.414-1.414z" /></svg></button>
               <button
-              onClick={() => { tasksDoneRef.current.scrollBy({ left: tasksDoneRef.current.offsetWidth * 0.7, behavior: 'smooth' }); }}
+                onClick={() => { tasksDoneRef.current.scrollBy({ left: tasksDoneRef.current.offsetWidth * 0.7, behavior: 'smooth' }); }}
                 className='p-2'
               ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path fill={theme === 'dark' ? '#DFF2EB' : '#000000'} d="M7.293 4.707 14.586 12l-7.293 7.293 1.414 1.414L17.414 12 8.707 3.293 7.293 4.707z" /></svg></button>
             </div>
           </div>
-        <div className='grid grid-flow-col grid-rows-1  overflow-x-auto no-scrollbar  overflow-y-hidden' ref={tasksDoneRef}
+          <div className='grid grid-flow-col grid-rows-1  overflow-x-auto no-scrollbar  overflow-y-hidden' ref={tasksDoneRef}
             onMouseDown={e => {
               e.preventDefault();
               window.addEventListener('mousemove', handleScrollTasksDone);
@@ -242,7 +243,7 @@ function Tasks() {
 
 
           >
-          {tasksDone.map((task) => {
+            {tasksDone.map((task) => {
 
               return <div className='mr-5' key={task.id}><TaskPanel info={task} setTaskViewer={setTaskViewer} setTaskInfo={setTaskInfo} /></div>
             })}
